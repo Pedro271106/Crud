@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tarefando — Planos de Assinatura</title>
+
+  <style>
+    /* === Estilos Gerais === */
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f8f3ea;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    header {
+      text-align: center;
+      padding: 40px 0 20px;
+      background-color: #b33b2d;
+      color: white;
+      border-bottom: 4px solid #d8b88a;
+    }
+
+    header h1 {
+      font-size: 2.3em;
+      margin: 0;
+    }
+
+    header p {
+      margin: 10px 0 0;
+      color: #f0e6e6;
+    }
+
+    /* === Cards dos Planos === */
+    .planos-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      padding: 30px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    .plano-card {
+      background-color: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+      padding: 25px;
+      text-align: center;
+      transition: transform 0.2s ease;
+      border: 2px solid #d8b88a;
+    }
+
+    .plano-card:hover {
+      transform: scale(1.03);
+    }
+
+    .plano-card h3 {
+      margin-bottom: 10px;
+      color: #4a2c2a;
+    }
+
+    .preco {
+      font-size: 1.6em;
+      color: #b33b2d;
+      margin: 10px 0;
+    }
+
+    .beneficios {
+      list-style: none;
+      padding: 0;
+      color: #555;
+      margin-bottom: 20px;
+    }
+
+    .beneficios li {
+      margin: 6px 0;
+    }
+
+    button {
+      background-color: #b33b2d;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+
+    button:hover {
+      background-color: #922e22;
+    }
+
+    /* === Plano Atual === */
+    .plano-atual {
+      text-align: center;
+      padding: 20px;
+      background-color: #fff;
+      margin: 30px auto;
+      max-width: 600px;
+      border-radius: 10px;
+      border: 2px solid #d8b88a;
+    }
+
+    .btn-cancelar {
+      background-color: #b84b4b;
+      margin-top: 10px;
+    }
+
+    .btn-cancelar:hover {
+      background-color: #922e22;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Tarefando</h1>
+    <p>Escolha o plano que combina com você</p>
+  </header>
+
+  <main>
+    <div class="planos-container" id="planos"></div>
+
+    <section class="plano-atual">
+      <h2>Seu plano atual</h2>
+      <p id="plano-atual">Nenhum plano ativo.</p>
+      <button id="cancelar-plano" class="btn-cancelar">Cancelar plano</button>
+    </section>
+  </main>
+
+  <script>
+    // Dados 
+    const planos = [
+      {
+        id: 1,
+        nome: "Plano Básico",
+        preco: "R$ 9,90 / mês",
+        beneficios: [
+          "-Acesso a anotações e provas antigas",
+        ]
+      },
+      {
+        id: 2,
+        nome: "Plano Plus",
+        preco: "R$ 19,90 / mês",
+        beneficios: [
+          "-Inclui grupos de estudo e monitorias",
+        ]
+      },
+      {
+        id: 3,
+        nome: "Plano Premium",
+        preco: "R$ 39,90 / mês",
+        beneficios: [
+          "-Tudo incluso + destaque no ranking",
+        ]
+      }
+    ];
+
+    let planoAtual = null;
+
+    const container = document.getElementById("planos");
+    const planoAtualTexto = document.getElementById("plano-atual");
+    const botaoCancelar = document.getElementById("cancelar-plano");
+
+    // Exibir planos
+    planos.forEach(plano => {
+      const card = document.createElement("div");
+      card.className = "plano-card";
+
+      card.innerHTML = `
+        <h3>${plano.nome}</h3>
+        <p class="preco">${plano.preco}</p>
+        <ul class="beneficios">
+          ${plano.beneficios.map(item => `<li>${item}</li>`).join("")}
+        </ul>
+        <button onclick="assinar('${plano.nome}')">Assinar</button>
+      `;
+
+      container.appendChild(card);
+    });
+
+    // Função de assinar plano
+    function assinar(nomePlano) {
+      planoAtual = nomePlano;
+      planoAtualTexto.textContent = `Seu plano atual é: ${nomePlano}`;
+      alert(`Você assinou o ${nomePlano}!`);
+    }
+
+    // Função de cancelar plano
+    botaoCancelar.addEventListener("click", () => {
+      if (planoAtual) {
+        alert(`Você cancelou o ${planoAtual}.`);
+        planoAtual = null;
+        planoAtualTexto.textContent = "Nenhum plano ativo.";
+      } else {
+        alert("Você não tem nenhum plano ativo no momento.");
+      }
+    });
+  </script>
+</body>
+</html>

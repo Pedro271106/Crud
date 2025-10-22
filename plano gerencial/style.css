@@ -1,0 +1,81 @@
+:root {
+  --cor-fundo: #f8f3ea;
+  --cor-principal: #8b2e2e;
+  --cor-detalhe: #d8b88a;
+  --cor-texto: #333;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: var(--cor-fundo);
+  margin: 0;
+  padding: 0;
+  color: var(--cor-texto);
+}
+
+header {
+  background-color: var(--cor-principal);
+  color: white;
+  text-align: center;
+  padding: 20px;
+  border-bottom: 5px solid var(--cor-detalhe);
+}
+
+#planos-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding: 20px;
+}
+
+.card {
+  background-color: white;
+  border: 2px solid var(--cor-detalhe);
+  border-radius: 10px;
+  width: 250px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card h3 {
+  color: var(--cor-principal);
+}
+
+.card ul {
+  list-style: none;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.card li {
+  margin: 5px 0;
+}
+
+button {
+  background-color: var(--cor-principal);
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #a13d3d;
+}
+
+.plano-atual {
+  text-align: center;
+  padding: 20px;
+  background-color: #fff;
+  margin: 20px;
+  border-radius: 10px;
+  border: 2px solid var(--cor-detalhe);
+}
+
+.btn-cancelar {
+  background-color: #b84b4b;
+}

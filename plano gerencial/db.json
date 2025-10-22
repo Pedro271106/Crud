@@ -1,0 +1,41 @@
+{
+  "planos": [
+    {
+      "id": 1,
+      "nome": "Plano Básico",
+      "preco": 9.90,
+      "beneficios": [
+        "Acesso a anotações",
+        "Provas antigas",
+        "Atividades compartilhadas"
+      ]
+    },
+    {
+      "id": 2,
+      "nome": "Plano Premium",
+      "preco": 19.90,
+      "beneficios": [
+        "Tudo do plano básico",
+        "Acesso a grupos de estudo",
+        "Monitorias com colegas"
+      ]
+    },
+    {
+      "id": 3,
+      "nome": "Plano VIP",
+      "preco": 29.90,
+      "beneficios": [
+        "Tudo do plano Premium",
+        "Destaque no ranking de contribuição",
+        "Suporte prioritário"
+      ]
+    }
+  ],
+  "usuarios": [
+    {
+      "id": 1,
+      "nome": "Pedro Henrique",
+      "planoId": 2
+    }
+  ]
+}
