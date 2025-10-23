@@ -1,5 +1,5 @@
-const apiUrl = "http://localhost:3000";
-const userId = 1; // Usuário fixo para o exemplo
+const apiUrl = "https://f9964542-666c-43e2-a68e-dcf09cad3194-00-2v0mysfsljsr1.spock.replit.dev/";
+const userId = 1; 
 
 async function carregarPlanos() {
   const response = await fetch(`${apiUrl}/planos`);

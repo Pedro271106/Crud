@@ -1,41 +1,44 @@
 {
+  "site": {
+    "nome": "Tarefando",
+    "menu": [
+      { "titulo": "Home", "link": "index.html" },
+      { "titulo": "Faculdades", "link": "faculdades.html" },
+      { "titulo": "Cadernos", "link": "cadernos.html" },
+      { "titulo": "Disciplinas", "link": "disciplinas.html" },
+      { "titulo": "Grupos", "link": "grupos.html" },
+      { "titulo": "Assinaturas", "link": "assinaturas.html" },
+      { "titulo": "FAQ", "link": "faq.html" },
+      { "titulo": "Admin", "link": "admin.html" }
+    ]
+  },
   "planos": [
     {
-      "id": 1,
-      "nome": "Plano Básico",
-      "preco": 9.90,
-      "beneficios": [
-        "Acesso a anotações",
-        "Provas antigas",
-        "Atividades compartilhadas"
-      ]
-    },
-    {
-      "id": 2,
-      "nome": "Plano Premium",
-      "preco": 19.90,
-      "beneficios": [
-        "Tudo do plano básico",
-        "Acesso a grupos de estudo",
-        "Monitorias com colegas"
-      ]
-    },
-    {
-      "id": 3,
-      "nome": "Plano VIP",
-      "preco": 29.90,
-      "beneficios": [
-        "Tudo do plano Premium",
-        "Destaque no ranking de contribuição",
-        "Suporte prioritário"
-      ]
-    }
+        "id": 1,
+        "nome": "Plano Gratuito",
+        "preco": "R$ 0 / mês",
+        "beneficios": [
+          "Acesso a anotações e provas antigas"
+        ]
+      },
+      {
+        "id": 2,
+        "nome": "Plano Plus",
+        "preco": "R$ 19,90 / mês",
+        "beneficios": [
+          "Inclui grupos de estudo e monitorias"
+        ]
+      },
+      {
+        "id": 3,
+        "nome": "Plano Premium",
+        "preco": "R$ 39,90 / mês",
+        "beneficios": [
+          "Tudo incluso + destaque no ranking"
+        ]
+      }
   ],
-  "usuarios": [
-    {
-      "id": 1,
-      "nome": "Pedro Henrique",
-      "planoId": 2
-    }
-  ]
+  "usuario": {
+    "planoAtual": "Nenhum plano ativo"
+  }
 }

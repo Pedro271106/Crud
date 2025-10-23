@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tarefando — Planos de Assinatura</title>
-
   <style>
-    /* === Estilos Gerais === */
     body {
       font-family: 'Poppins', sans-serif;
       background-color: #f8f3ea;
@@ -15,30 +13,44 @@
       color: #333;
     }
 
+    /* === CABEÇALHO === */
     header {
+      background-color: #4a2c2a;
+      color: #fff;
+      padding: 15px 30px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-weight: bold;
+      font-size: 1.5em;
+    }
+
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 20px;
+      font-weight: 500;
+      transition: opacity 0.2s ease;
+    }
+
+    nav a:hover {
+      opacity: 0.8;
+    }
+
+    /* === CONTEÚDO PRINCIPAL === */
+    .conteudo {
       text-align: center;
-      padding: 40px 0 20px;
-      background-color: #b33b2d;
-      color: white;
-      border-bottom: 4px solid #d8b88a;
+      padding: 40px 20px;
     }
 
-    header h1 {
-      font-size: 2.3em;
-      margin: 0;
-    }
-
-    header p {
-      margin: 10px 0 0;
-      color: #f0e6e6;
-    }
-
-    /* === Cards dos Planos === */
     .planos-container {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 20px;
-      padding: 30px;
+      padding: 20px;
       max-width: 1000px;
       margin: auto;
     }
@@ -50,7 +62,6 @@
       padding: 25px;
       text-align: center;
       transition: transform 0.2s ease;
-      border: 2px solid #d8b88a;
     }
 
     .plano-card:hover {
@@ -93,113 +104,262 @@
       background-color: #922e22;
     }
 
-    /* === Plano Atual === */
-    .plano-atual {
+    /* === SEÇÃO ADMIN === */
+    #admin-section {
+      display: none;
+      background: #fff;
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    #admin-section h2 {
+      color: #4a2c2a;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+    }
+
+    th, td {
+      padding: 10px;
+      border-bottom: 1px solid #ddd;
       text-align: center;
-      padding: 20px;
-      background-color: #fff;
-      margin: 30px auto;
-      max-width: 600px;
-      border-radius: 10px;
-      border: 2px solid #d8b88a;
     }
 
-    .btn-cancelar {
-      background-color: #b84b4b;
-      margin-top: 10px;
+    th {
+      background-color: #b33b2d;
+      color: #fff;
     }
 
-    .btn-cancelar:hover {
-      background-color: #922e22;
+    tr:hover {
+      background-color: #f9f9f9;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin: 6px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+
+    .form-container {
+      margin-top: 30px;
+    }
+
+    .form-container h3 {
+      color: #4a2c2a;
+      margin-bottom: 10px;
     }
   </style>
 </head>
-
 <body>
+  <!-- === CABEÇALHO === -->
   <header>
-    <h1>Tarefando</h1>
-    <p>Escolha o plano que combina com você</p>
+    <div class="logo">📝 Tarefando</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">Faculdades</a>
+      <a href="#">Cadernos</a>
+      <a href="#">Disciplinas</a>
+      <a href="#">Grupos</a>
+      <a href="#">Assinaturas</a>
+      <a href="#">FAQ</a>
+      <button onclick="toggleAdmin()" style="margin-left:20px;">Admin</button>
+    </nav>
   </header>
 
-  <main>
-    <div class="planos-container" id="planos"></div>
+  <!-- === CONTEÚDO PRINCIPAL === -->
+  <section class="conteudo">
+    <h1>Planos de Assinatura</h1>
+    <p>Escolha o plano que melhor se adapta às suas necessidades</p>
+  </section>
 
-    <section class="plano-atual">
-      <h2>Seu plano atual</h2>
-      <p id="plano-atual">Nenhum plano ativo.</p>
-      <button id="cancelar-plano" class="btn-cancelar">Cancelar plano</button>
-    </section>
-  </main>
+  <div class="planos-container" id="planos"></div>
+
+  <!-- === ADMIN AREA === -->
+  <section id="admin-section">
+    <h2>Painel do Administrador</h2>
+    <table id="tabela-planos">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Preço</th>
+          <th>Benefícios</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <div class="form-container">
+      <h3>Editar / Atualizar Plano</h3>
+      <input type="hidden" id="id-plano">
+      <label>Nome:</label>
+      <input type="text" id="nome-plano">
+      <label>Preço:</label>
+      <input type="text" id="preco-plano">
+      <label>Benefícios (1 por linha):</label>
+      <textarea id="beneficios-plano" rows="4"></textarea>
+      <button onclick="salvarEdicao()">Salvar Alterações</button>
+    </div>
+
+    <div class="form-container">
+      <h3>Adicionar Novo Plano</h3>
+      <label>Nome:</label>
+      <input type="text" id="novo-nome">
+      <label>Preço:</label>
+      <input type="text" id="novo-preco">
+      <label>Benefícios (1 por linha):</label>
+      <textarea id="novo-beneficios" rows="4"></textarea>
+      <button onclick="adicionarPlano()">Adicionar Plano</button>
+    </div>
+  </section>
 
   <script>
-    // Dados 
-    const planos = [
+    // === DADOS INICIAIS ===
+    let planos = JSON.parse(localStorage.getItem("planosTarefando")) || [
       {
         id: 1,
-        nome: "Plano Básico",
-        preco: "R$ 9,90 / mês",
-        beneficios: [
-          "-Acesso a anotações e provas antigas",
-        ]
+        nome: "Plano Gratuito",
+        preco: "R$ 0 / mês",
+        beneficios: ["Acesso básico às tarefas", "Criação de até 5 tarefas", "Suporte por e-mail"]
       },
       {
         id: 2,
         nome: "Plano Plus",
         preco: "R$ 19,90 / mês",
-        beneficios: [
-          "-Inclui grupos de estudo e monitorias",
-        ]
+        beneficios: ["Criação ilimitada de tarefas", "Organização por categorias", "Relatórios de produtividade", "Suporte prioritário"]
       },
       {
         id: 3,
         nome: "Plano Premium",
         preco: "R$ 39,90 / mês",
-        beneficios: [
-          "-Tudo incluso + destaque no ranking",
-        ]
+        beneficios: ["Todos os recursos do Plus", "Tarefas em equipe", "Backup em nuvem", "Atendimento personalizado"]
       }
     ];
 
-    let planoAtual = null;
-
     const container = document.getElementById("planos");
-    const planoAtualTexto = document.getElementById("plano-atual");
-    const botaoCancelar = document.getElementById("cancelar-plano");
+    const tbody = document.querySelector("#tabela-planos tbody");
+    const adminSection = document.getElementById("admin-section");
 
-    // Exibir planos
-    planos.forEach(plano => {
-      const card = document.createElement("div");
-      card.className = "plano-card";
+    const idInput = document.getElementById("id-plano");
+    const nomeInput = document.getElementById("nome-plano");
+    const precoInput = document.getElementById("preco-plano");
+    const beneficiosInput = document.getElementById("beneficios-plano");
 
-      card.innerHTML = `
-        <h3>${plano.nome}</h3>
-        <p class="preco">${plano.preco}</p>
-        <ul class="beneficios">
-          ${plano.beneficios.map(item => `<li>${item}</li>`).join("")}
-        </ul>
-        <button onclick="assinar('${plano.nome}')">Assinar</button>
-      `;
-
-      container.appendChild(card);
-    });
-
-    // Função de assinar plano
-    function assinar(nomePlano) {
-      planoAtual = nomePlano;
-      planoAtualTexto.textContent = `Seu plano atual é: ${nomePlano}`;
-      alert(`Você assinou o ${nomePlano}!`);
+    // === RENDERIZAÇÃO DE PLANOS ===
+    function renderizarPlanos() {
+      container.innerHTML = "";
+      planos.forEach(plano => {
+        const card = document.createElement("div");
+        card.className = "plano-card";
+        card.innerHTML = `
+          <h3>${plano.nome}</h3>
+          <p class="preco">${plano.preco}</p>
+          <ul class="beneficios">
+            ${plano.beneficios.map(b => `<li>${b}</li>`).join("")}
+          </ul>
+          <button onclick="assinar('${plano.nome}')">Assinar</button>
+        `;
+        container.appendChild(card);
+      });
     }
 
-    // Função de cancelar plano
-    botaoCancelar.addEventListener("click", () => {
-      if (planoAtual) {
-        alert(`Você cancelou o ${planoAtual}.`);
-        planoAtual = null;
-        planoAtualTexto.textContent = "Nenhum plano ativo.";
-      } else {
-        alert("Você não tem nenhum plano ativo no momento.");
+    // === FUNÇÕES DO ADMIN ===
+    function renderizarTabela() {
+      tbody.innerHTML = "";
+      planos.forEach(plano => {
+        const tr = document.createElement("tr");
+        tr.innerHTML = `
+          <td>${plano.id}</td>
+          <td>${plano.nome}</td>
+          <td>${plano.preco}</td>
+          <td>${plano.beneficios.join("<br>")}</td>
+          <td>
+            <button onclick="editarPlano(${plano.id})">Editar</button>
+            <button onclick="excluirPlano(${plano.id})">Excluir</button>
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+      localStorage.setItem("planosTarefando", JSON.stringify(planos));
+    }
+
+    function editarPlano(id) {
+      const plano = planos.find(p => p.id === id);
+      idInput.value = plano.id;
+      nomeInput.value = plano.nome;
+      precoInput.value = plano.preco;
+      beneficiosInput.value = plano.beneficios.join("\n");
+    }
+
+    function salvarEdicao() {
+      const id = Number(idInput.value);
+      const index = planos.findIndex(p => p.id === id);
+      if (index !== -1) {
+        planos[index].nome = nomeInput.value;
+        planos[index].preco = precoInput.value;
+        planos[index].beneficios = beneficiosInput.value.split("\n").map(b => b.trim()).filter(b => b);
+        renderizarPlanos();
+        renderizarTabela();
+        alert("Plano atualizado!");
       }
-    });
+    }
+
+    function excluirPlano(id) {
+      planos = planos.filter(p => p.id !== id);
+      renderizarPlanos();
+      renderizarTabela();
+      alert("Plano excluído!");
+    }
+
+    function adicionarPlano() {
+      const nome = document.getElementById("novo-nome").value.trim();
+      const preco = document.getElementById("novo-preco").value.trim();
+      const beneficios = document.getElementById("novo-beneficios").value
+        .split("\n")
+        .map(b => b.trim())
+        .filter(b => b);
+
+      if (!nome || !preco || beneficios.length === 0) {
+        alert("Preencha todos os campos!");
+        return;
+      }
+
+      const novoPlano = {
+        id: Date.now(),
+        nome,
+        preco,
+        beneficios
+      };
+
+      planos.push(novoPlano);
+      renderizarPlanos();
+      renderizarTabela();
+      document.getElementById("novo-nome").value = "";
+      document.getElementById("novo-preco").value = "";
+      document.getElementById("novo-beneficios").value = "";
+      alert("Novo plano adicionado!");
+    }
+
+    function toggleAdmin() {
+      adminSection.style.display = adminSection.style.display === "none" ? "block" : "none";
+      renderizarTabela();
+    }
+
+    function assinar(nomePlano) {
+      alert(`Você selecionou o ${nomePlano}!`);
+    }
+
+    // === INICIALIZAÇÃO ===
+    renderizarPlanos();
   </script>
 </body>
 </html>
