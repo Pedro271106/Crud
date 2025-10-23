@@ -1,81 +1,116 @@
+/* --------- Variáveis --------- */
 :root {
-  --cor-fundo: #f8f3ea;
-  --cor-principal: #8b2e2e;
-  --cor-detalhe: #d8b88a;
-  --cor-texto: #333;
+  --bg: #FBF6EE;
+  --paper: #FDF9F1;
+  --panel: #FFF9F2;
+  --ink: #2E2A26;
+  --muted: #6F6A63;
+  --brand: #B34C48;
+  --brand-2: #EBC172;
+  --sage: #9DBF9E;
+  --sky: #C7D9E7;
+  --clay: #D6A38A;
 }
 
+/* --------- Reset --------- */
 body {
-  font-family: Arial, sans-serif;
-  background-color: var(--cor-fundo);
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: var(--bg);
+  color: var(--ink);
+}
+
+/* --------- Navbar --------- */
+nav {
+  background-color: var(--panel);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+nav .logo {
+  font-weight: 700;
+  font-size: 1.5em;
+  color: var(--brand);
+  cursor: pointer;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 25px;
   margin: 0;
   padding: 0;
-  color: var(--cor-texto);
 }
 
+nav ul li {
+  cursor: pointer;
+  color: var(--ink);
+  transition: color 0.2s;
+}
+
+nav ul li:hover {
+  color: var(--brand);
+}
+
+/* --------- Container de Planos --------- */
 header {
-  background-color: var(--cor-principal);
-  color: white;
   text-align: center;
-  padding: 20px;
-  border-bottom: 5px solid var(--cor-detalhe);
+  margin-top: 40px;
 }
 
-#planos-container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+.planos-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 20px;
-  padding: 20px;
+  padding: 40px;
+  max-width: 1000px;
+  margin: auto;
 }
 
-.card {
-  background-color: white;
-  border: 2px solid var(--cor-detalhe);
-  border-radius: 10px;
-  width: 250px;
-  padding: 15px;
+.plano-card {
+  background-color: var(--panel);
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  padding: 25px;
   text-align: center;
-  box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
 }
 
-.card h3 {
-  color: var(--cor-principal);
+.plano-card:hover {
+  transform: scale(1.03);
 }
 
-.card ul {
-  list-style: none;
-  padding: 0;
+.plano-card h3 {
+  margin-bottom: 10px;
+  color: var(--brand);
+}
+
+.preco {
+  font-size: 1.6em;
+  color: var(--brand-2);
   margin: 10px 0;
 }
 
-.card li {
-  margin: 5px 0;
+.beneficios {
+  list-style: none;
+  padding: 0;
+  margin-bottom: 20px;
+  color: var(--muted);
 }
 
 button {
-  background-color: var(--cor-principal);
-  color: white;
+  background-color: var(--brand);
   border: none;
-  padding: 10px;
+  color: white;
+  padding: 10px 20px;
   border-radius: 8px;
   cursor: pointer;
-  margin-top: 10px;
+  transition: background-color 0.2s;
 }
 
 button:hover {
-  background-color: #a13d3d;
-}
-
-.plano-atual {
-  text-align: center;
-  padding: 20px;
-  background-color: #fff;
-  margin: 20px;
-  border-radius: 10px;
-  border: 2px solid var(--cor-detalhe);
-}
-
-.btn-cancelar {
-  background-color: #b84b4b;
+  background-color: #922e22;
 }
