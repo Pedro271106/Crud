@@ -26,39 +26,60 @@
       color: var(--ink);
     }
 
-    nav {
-      background-color: var(--panel);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 15px 40px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-    }
+   nav {
+  background-color: var(--panel);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 5%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  flex-wrap: wrap;
+}
 
-    nav .logo {
-      font-weight: 700;
-      font-size: 1.5em;
-      color: var(--brand);
-      cursor: pointer;
-    }
+nav .logo {
+  font-weight: 700;
+  font-size: 1.5em;
+  color: var(--brand);
+  cursor: pointer;
+  flex: 1;
+}
 
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 25px;
-      margin: 0;
-      padding: 0;
-    }
+nav ul {
+  list-style: none;
+  display: flex;
+  flex: 2;
+  justify-content: flex-end;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin: 0;
+  padding: 0;
+}
 
-    nav ul li {
-      cursor: pointer;
-      color: var(--ink);
-      transition: color 0.2s;
-    }
+nav ul li {
+  cursor: pointer;
+  color: var(--ink);
+  transition: color 0.2s;
+  font-weight: 500;
+}
 
-    nav ul li:hover {
-      color: var(--brand);
-    }
+nav ul li:hover {
+  color: var(--brand);
+}
+
+nav ul li button {
+  background-color: var(--brand);
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+nav ul li button:hover {
+  background-color: #922e22;
+}
 
     header {
       text-align: center;
